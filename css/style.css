@@ -1,0 +1,114 @@
+/*=============== FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+/*=============== COLORS ===============*/
+:root {
+  --text-main: #161f38;
+  --text-light: #575861;
+  --gary-lighter: #efefef;
+  --sucess-color: #96ea8c;
+  --error-color: #ff9b84;
+  --accent-color: #0066ff;
+  --light-gray: hsl(0, 0%, 80%);
+  --white: hsl(0, 0%, 100%);
+  --body-bg: #fff;
+  --footer-bg: #f9f9f9;
+  --black: hsl(0, 0%, 0%);
+
+/*=============== TYPOGRAPHY ===============*/
+  --ff-roboto: "Roboto", sans-serif;
+  --fw-700: 700;
+  --fw-500: 500;
+  --fw-400: 400;
+  --fw-300: 300;
+
+/*=============== SHADOW ===============*/
+  --shadow: 0 15px 40px 5px rgba(132, 132, 133, 0.15);
+
+/*=============== TRANSITION ===============*/
+  --transition: 0.25s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+a,
+span,
+img,
+button,
+input,
+i {
+  display: block;
+}
+
+button,
+input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+}
+
+button,
+i {
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: var(--body-bg);
+  color: var(--text-main);
+  font-size: 1.6rem;
+  line-height: 1.6;
+  font-weight: 500;
+  transition: all 0.5s ease;
+}
+
+/*=============== STYLE ===============*/
+.container {
+  padding-inline: 20px;
+}
+
+.img_cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn {
+  max-width: max-content;
+  padding-inline: 32px;
+  white-space: nowrap;
+  font-weight: 500;
+  background-color: var(--accent-color);
+  color: var(--white);
+  text-align: center;
+  transition: all 0.25s;
+  opacity: 1;
+  font-size: 1rem;
+}
