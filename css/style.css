@@ -453,3 +453,17 @@ body.dark-theme .logo_light-mode {
   padding-block-end: 0;
   margin-bottom: 0;
 }
+
+/* RECENT POST */
+
+.recent_post-container {
+  gap: 65px;
+}
+
+.recent_post-container .post_banner {
+  padding-block-end: 80%;
+}
+
+.recent_post .btn {
+  margin: 5rem auto 2rem;
+}
