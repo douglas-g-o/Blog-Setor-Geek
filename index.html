@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,12 +7,16 @@
     <title>Setor Geek - Blog</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/newpost.css">
+    <link rel="icon" href="./img/favicon.png">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
 </head>
 
 
 <body>
-
+    
     <header class="header">
         <div class="container">
             <a href="index.html" class="logo">
@@ -670,9 +673,216 @@
             </div>
         </section>
 
+        <section class="user-posts">
+            <div class="container">
+                <div class="publish-post d-flex flex-wrap">
+                    <div class="post-new">
+                        <h2 class="user-new">
+                            Tenha sua postagem no blog
+                        </h2>
+                        <p class="text-new">
+                            Que tal ter o seu próprio post, notícia, análise ou artigo sobre o mundo geek?
+                        </p>
+                        <form id="form-post">
+                            <div class="form-group">
+                                <label for="title" class="form-label">Título:</label>
+                                <input type="text" id="title" name="title" class="form-control" maxlength="85" oninput="validateTitle()">
+                                <p id="error-title" class="error-message" style="display: none;">O título deve ter no máximo 85 caracteres.</p>
+                            </div>                                                          
+                            <div class="form-group author">
+                                <label for="author" class="form-label">Autor:</label>
+                                <input type="text" id="author" name="author" class="form-control">
+                            </div>
+                            
+                        </form>
+                    </div>
+                    <form class="d-flex flex-wrap w-100 align-items-start">
+                        <div class="form-group w-100">
+                            <label for="content" class="form-label">Conteúdo:</label>
+                            <textarea id="content" name="content" class="form-control"></textarea>
+                        </div>
+                        
+                    </form>
+                    <form id="form-post" action="javascript:criarPostagem()" method="POST">
+                        <button type="submit" class="btn btn-lg ml-auto" id="button-post">Criar Postagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+            <div id="postagens">
+            </div>
+        </div>
+        
 
+        <section class="newsletter">
+            <div class="container">
+                <div class="email-subs_wrap">
+                    <div class="text_wrap">
+                        <h2 class="h1 email-subs_title">
+                            Inscreva-se no Setor Geek
+                        </h2>
+                        <p class="email-subs_description">
+                            Receba todas as postagens mais recentes diretamente na sua caixa de entrada.
+                        </p>
+                    </div>
+        
+                    <div class="form_wrap">
+                        <form action="/subscribe" method="post" class="members-form">
+                            <div class="form-field_wrap">
+                                <input type="text" placeholder="Nome" name="nome" class="form_field">
+                                <input type="text" placeholder="Email" name="email" class="form_field">
+                            </div>
+                            <button class="btn btn-lg" type="submit" id="subscribeBtn">
+                                <span>Se inscrever</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+          
+          
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <img src="./img/banner.png" alt="" class="logo_light-mode">
+                        <img src="./img/banner.png" alt="" class="logo_dark-mode">
+                    </a>
+                    <div class="footer_description">
+                        O Setor Geek tem como objetivo se tornar a maior comunidade de novidades e notícias geek do Brasil. Para alcançar
+                        esse resultado, buscamos sempre oferecer aos nossos clientes informações de alta qualidade e confiabilidade.<br>
+                    
+                        <br>Acreditamos que é essencial manter nossos leitores atualizados sobre as últimas tendências do universo geek, como
+                        lançamentos de filmes, jogos, séries, eventos e tecnologia. Dessa forma, estamos constantemente em busca de
+                        informações precisas e relevantes para compartilhar com nossa comunidade.
+                    </div>
+    
+                    <div class="social-links_wrap">
+                        <a href="https://www.facebook.com/profile.php?id=100078309702034" class="social_link">
+                            <i class='bx bxl-facebook' ></i>
+                        </a>
+                        <a href="https://www.instagram.com/lojageek.uni/" class="social_link">
+                            <i class='bx bxl-instagram' ></i>
+                        </a>
+                        <a href="https://twitter.com/LojaGeekUni" class="social_link">
+                            <i class='bx bxl-twitter' ></i>
+                        </a>
+                        <a href="https://github.com/douglas-g-o/Blog-Setor-Geek" class="social_link">
+                            <i class='bx bxl-github' ></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer_list">
+                    <div class="footer_items">
+                        <h3 class="h6 footer_title">Fundadores</h3>
+    
+                        <ul class="footer_links-list">
+                            <li class="footer_links-items">
+                                <a href="https://www.linkedin.com/in/douglasgamaoliveira/">
+                                    Douglas Gama
+                                </a>
+                            </li>
+                            <li class="footer_links-items">
+                                <a href="https://www.linkedin.com/in/felipe-santos-49b219168/">
+                                    Felipe Santos
+                                </a>
+                            </li>
+                            <li class="footer_links-items">
+                                <a href="https://www.linkedin.com/in/francine-aparecida-9480891ab/">
+                                    Francine Figueiredo
+                                </a>
+                            </li>
+                            <li class="footer_links-items">
+                                <a href="https://www.linkedin.com/in/felipexavier2/">
+                                    Felipe Carvalho
+                                </a>
+                            </li>
+                            <li class="footer_links-items">
+                                <a href="https://www.linkedin.com/in/tamer-berni-canovas-gomes-637744231/">
+                                    Tamer Canovas
+                                </a>
+                            </li>
+                            <li class="footer_links-items">
+                                <a href="https://www.linkedin.com/in/jo%C3%A3o-renato-sant-ana-907871203/">
+                                    João Renato
+                                </a>
+                            </li>
+                            <li class="footer_links-items">
+                                <a href="https://www.linkedin.com/in/matheus-c4/">
+                                    Matheus Campos
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div class="footer_items">
+                        <h3 class="h6 footer_title">Membros</h3>
+    
+                        <ul class="footer_links-list">
+                            <li class="footer_links-items">
+                                <a href="#">
+                                    Filiação
+                                </a>
+                            </li>
+                            <li class="footer_links-items">
+                                <a href="#">
+                                    Entrar
+                                </a>
+                            </li>
+                            <li class="footer_links-items">
+                                <a href="#">
+                                    Inscrever-se
+                                </a>
+                            </li>
+                            <li class="footer_links-items">
+                                <a href="#">
+                                    Conta
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div class="footer_items">
+                        <h3 class="h6 footer_title">Sobre</h3>
+    
+                        <ul class="footer_links-list">
+                            <li class="footer_links-items">
+                                <a href="https://setor-geek.web.app/">
+                                    Setor Geek - Comercio
+                                </a>
+                            </li>
+                            <li class="footer_links-items">
+                                <a href="https://setor-geek.web.app/suporte.html">
+                                    Contato
+                                </a>
+                            </li>
+                            <li class="footer_links-items">
+                                <a href="#">
+                                    Privacidade
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">
+                    &copy; 2022-2023 Proibida a reprodução sem autorização. SETOR GEEK PRODUTOS COMERCIO DE VESTUÁRIO E ACESSÓRIOS LTDA | CNPJ: 29.428.420/0001-55 | Av. Professor Luiz Ignácio Anhaia Mello, 1363 - Vila Prudente, São Paulo - SP, CEP 03155-000
+                </p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 
 <script src="js/script.js"></script>
+<script src="js/script1.js"></script>
+
 </html>
