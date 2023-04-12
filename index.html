@@ -7,10 +7,10 @@
     <title>Setor Geek - Blog</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/newpost.css">
     <link rel="icon" href="./img/favicon.png">
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
 </head>
 
@@ -39,14 +39,19 @@
                         <a href="#" class="nav_link"></a>
                     </li>
             </nav>
-            <div class="search">
-                <div class="icon"></div>
-                <div class="input">
-                    <input type="text" placeholder="Olá, o que você procura?" id="mysearch">
+            <form action="#" method="get">
+                <div class="search-bar">
+                    <input type="text" placeholder="Olá, o que você procura?" id="search-input"
+                        list="search-suggestions">
+                    <datalist id="search-suggestions" class="browserdata">
+                        <option value="Cadastro" data-url="https://setor-geek.web.app/cadastro.html"></option>
+                        <option value="Login" data-url="https://setor-geek.web.app/login.html"></option>
+                        <option value="Inicio da pagina" data-url="index.html"></option>
+                        <option value="Suporte - Fale conosco" data-url="https://setor-geek.web.app/suporte.html"></option>
+                    </datalist>
+                    <button type="submit" id="search-button"><i class="fas fa-search"></i></button>
                 </div>
-                <span class="clear" onclick="document.getElementById
-                        ('mysearch').value = ''"></span>
-            </div>
+            </form>
             <nav class="nav_menu">
                 <ul class="header_actions">
                     <li>
@@ -831,18 +836,13 @@
                                 </a>
                             </li>
                             <li class="footer_links-items">
-                                <a href="#">
+                                <a href="https://setor-geek.web.app/login.html">
                                     Entrar
                                 </a>
                             </li>
                             <li class="footer_links-items">
                                 <a href="#">
                                     Inscrever-se
-                                </a>
-                            </li>
-                            <li class="footer_links-items">
-                                <a href="#">
-                                    Conta
                                 </a>
                             </li>
                         </ul>
@@ -883,6 +883,5 @@
 </body>
 
 <script src="js/script.js"></script>
-<script src="js/script1.js"></script>
 
 </html>

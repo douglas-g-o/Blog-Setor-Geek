@@ -181,19 +181,30 @@ function validateTitle() {
 }
 
 /*=============== SEARCH ===============*/
-const searchBox = document.querySelector('.search');
-const searchIcon = document.querySelector('.icon');
-let timer;
+const form = document.querySelector('form');
+const input = document.querySelector('#search-input');
 
-searchIcon.addEventListener('mouseenter', () => {
-  clearTimeout(timer); // Clears the previous timer to prevent the search box from closing immediately
-  searchBox.classList.add('active');
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const keyword = input.value.toLowerCase();
+  const pages = ['camisetas.html', 'manga.html', 'suporte.html']; // listar paginas de busca
+  const matchingPages = pages.filter((page) => page.toLowerCase().includes(keyword));
+  
+  if (matchingPages.length > 0) {
+    window.location.href = matchingPages[0];
+  } else {
+    alert('Nenhuma página correspondente encontrada.');
+  }
 });
 
-searchBox.addEventListener('mouseleave', () => {
-  timer = setTimeout(() => { // Sets a new timer to close the search box after 2 seconds
-    searchBox.classList.remove('active');
-  }, 2000);
+const searchInput = document.getElementById("search-input");
+
+searchInput.addEventListener("input", (event) => {
+  const selectedOption = document.querySelector(`#search-suggestions option[value="${event.target.value}"]`);
+  if (selectedOption) {
+    window.location.href = selectedOption.dataset.url;
+  }
 });
+
 
 /*=============== sendgrid/mail ===============*/
