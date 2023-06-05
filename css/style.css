@@ -351,8 +351,11 @@ body.dark-theme .logo_light-mode {
 
 @media (min-width: 12.5rem) and (max-width: 573px) {
   .header_button-wrap {
-    margin-top: 7%;
+    margin-top: 0%;
   }
+  .header_button-wrap {
+    margin-left: 47%;
+}
 }
 
 @media (min-width: 12.5rem) and (max-width: 573px) {
